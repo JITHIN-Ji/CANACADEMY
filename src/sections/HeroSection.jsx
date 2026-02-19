@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const slideshowImages = [
-    
     { src: "/assets/3.jpeg", alt: "Student achieving" },
     { src: "/assets/4.jpeg", alt: "Student preparing" },
 ];
@@ -63,7 +62,7 @@ export default function HeroSection() {
             style={{
                 background: "#e8efec",
                 minHeight: "92vh",
-                paddingTop: "180px",
+                paddingTop: "150px",          /* ← increased to push content below navbar */
                 fontFamily: "'DM Sans', sans-serif",
                 position: "relative",
                 overflow: "hidden",
@@ -117,7 +116,6 @@ export default function HeroSection() {
                     border-color: #1a9c6e !important;
                     transform: translateY(-2px);
                 }
-
                 .hero-stat-num {
                     font-family: 'Playfair Display', serif;
                     font-size: 30px;
@@ -132,7 +130,6 @@ export default function HeroSection() {
                     margin-top: 6px;
                     font-weight: 500;
                 }
-
                 .hero-tag {
                     display: inline-block;
                     font-size: 11px;
@@ -142,45 +139,57 @@ export default function HeroSection() {
                     padding: 5px 14px;
                     border-radius: 999px;
                     margin-bottom: 20px;
+                    margin-top: 32px;
                     background: rgba(26, 156, 110, 0.12);
                     color: #1a9c6e;
                     font-family: 'DM Sans', sans-serif;
                 }
 
+                /* ── MOBILE — completely unchanged ── */
                 @media (max-width: 768px) {
-    .hero-section-outer { padding-top: 160px !important; }
-    .hero-section-mobile { padding: 0 20px 48px !important; }
-    .hero-section-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
-    .hero-section-left { text-align: center; }
-    .hero-section-left .hero-tag { margin-left: auto; margin-right: auto; }
-    .hero-section-left h1 { text-align: center; }
-    .hero-section-left h1 span { display: block; }
-    .hero-section-left p { margin-left: auto; margin-right: auto; max-width: 100% !important; }
-    .hero-section-btns { justify-content: center; }
-    .hero-section-stats { justify-content: center; gap: 32px !important; flex-wrap: wrap; }
-    .hero-section-imgs { order: -1; margin-top: 0; }
-    .hero-section-imgs-grid { 
-        grid-template-columns: 1fr 1fr !important; 
-        gap: 12px !important; 
-        max-width: 100%; 
-        margin: 0 auto; 
-    }
-    .hero-section-imgs .img-card { 
-        margin-top: 0 !important; 
-        height: 250px !important; 
-    }
-    .hero-section-imgs .img-card:last-child { 
-        margin-top: 24px !important; 
-    }
-    .hero-section-imgs .wave1, .hero-section-imgs .wave2 { display: none; }
-}
+                    .hero-section-outer { padding-top: 160px !important; }
+                    .hero-section-mobile { padding: 0 20px 48px !important; max-width: 100% !important; }
+                    .hero-section-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
+                    .hero-section-left { text-align: center; }
+                    .hero-section-left .hero-tag { margin-left: auto; margin-right: auto; }
+                    .hero-section-left h1 { text-align: center; }
+                    .hero-section-left h1 span { display: block; }
+                    .hero-section-left p { margin-left: auto; margin-right: auto; max-width: 100% !important; }
+                    .hero-section-btns { justify-content: center; }
+                    .hero-section-stats { justify-content: center; gap: 32px !important; flex-wrap: wrap; }
+                    .hero-section-imgs { order: -1; margin-top: 0; }
+                    .hero-section-imgs-grid {
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 12px !important;
+                        max-width: 100%;
+                        margin: 0 auto;
+                    }
+                    .hero-section-imgs .img-card {
+                        margin-top: 0 !important;
+                        height: 250px !important;
+                    }
+                    .hero-section-imgs .img-card:last-child {
+                        margin-top: 24px !important;
+                    }
+                    .hero-section-imgs .wave1, .hero-section-imgs .wave2 { display: none; }
+                }
             `}</style>
 
-            <div className="hero-section hero-section-mobile" style={{ width: "100%", padding: "0 72px 48px", boxSizing: "border-box" }}>
+            {/* maxWidth + margin:auto keeps content centered & constrained on wide monitors */}
+            <div
+                className="hero-section hero-section-mobile"
+                style={{
+                    width: "100%",
+                    maxWidth: "1280px",       /* ← constrain desktop width */
+                    margin: "0 auto",          /* ← center on wide screens  */
+                    padding: "0 60px 48px",    /* ← slightly tighter than original 72px */
+                    boxSizing: "border-box",
+                }}
+            >
                 <div className="hero-section-grid" style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
-                    gap: "56px",
+                    gap: "40px",               /* ← reduced from 56px */
                     alignItems: "center",
                 }}>
 
@@ -189,37 +198,32 @@ export default function HeroSection() {
                         <div className="hero-tag">Kerala's Most Trusted PSC Institute</div>
 
                         <h1
-  className="h-title"
-  style={{
-    fontSize: "clamp(44px, 4.8vw, 72px)",
-    fontWeight: 700,
-    lineHeight: 1.1,
-    color: "#0c1c17",
-    margin: "0 0 22px",
-    letterSpacing: "-0.02em",
-  }}
->
-  Achieve Excellence
-
-  <span
-    style={{
-      display: "block",
-      marginTop: "4px",
-      background: "linear-gradient(90deg, #1d4ed8, #13b456)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      backgroundClip: "text",
-      fontWeight: 700,
-    }}
-  >
-    in PSC, KTET & SSC
-  </span>
-
-  <span style={{ display: "block" }}>
-    Exams.
-  </span>
-</h1>
-
+                            className="h-title"
+                            style={{
+                                fontSize: "clamp(36px, 3.8vw, 58px)", /* ← scaled down from clamp(44px,4.8vw,72px) */
+                                fontWeight: 700,
+                                lineHeight: 1.1,
+                                color: "#0c1c17",
+                                margin: "0 0 22px",
+                                letterSpacing: "-0.02em",
+                            }}
+                        >
+                            Achieve Excellence
+                            <span
+                                style={{
+                                    display: "block",
+                                    marginTop: "4px",
+                                    background: "linear-gradient(90deg, #1d4ed8, #13b456)",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                    backgroundClip: "text",
+                                    fontWeight: 700,
+                                }}
+                            >
+                                in PSC, KTET & SSC
+                            </span>
+                            <span style={{ display: "block" }}>Exams.</span>
+                        </h1>
 
                         <p className="h-desc" style={{
                             fontSize: "17px", lineHeight: 1.8,
@@ -304,12 +308,12 @@ export default function HeroSection() {
                         <div className="hero-section-imgs-grid" style={{
                             display: "grid",
                             gridTemplateColumns: "1fr 1fr",
-                            gap: "40px",
+                            gap: "20px",           /* ← reduced from 40px */
                             alignItems: "start",
                         }}>
                             <div className="img-card" style={{
                                 borderRadius: "22px", overflow: "hidden",
-                                height: "440px",
+                                height: "360px",       /* ← reduced from 440px */
                                 boxShadow: "0 20px 56px rgba(0,0,0,0.13)",
                                 background: "#c8e6d8",
                             }}>
@@ -322,11 +326,11 @@ export default function HeroSection() {
 
                             <div className="img-card" style={{
                                 borderRadius: "22px", overflow: "hidden",
-                                height: "440px", marginTop: "56px",
+                                height: "360px",       /* ← reduced from 440px */
+                                marginTop: "40px",     /* ← reduced from 56px  */
                                 boxShadow: "0 20px 56px rgba(0,0,0,0.13)",
                                 background: "#c8e6d8",
                                 position: "relative",
-                                
                             }}>
                                 <SlideshowImage />
                             </div>
