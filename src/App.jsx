@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import Courses from "./pages/courses";
 import Contact from "./pages/contact";
 import CourseDetailPage from "./pages/Coursedetailpage";
-import TutorsPage from "./pages/tutors";
+// import TutorsPage from "./pages/tutors";
 
 export default function App() {
     const location = useLocation();
@@ -24,7 +24,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/courses" element={<Courses />} />
-                <Route path="/tutors" element={<TutorsPage />} />
+                {/* <Route path="/tutors" element={<TutorsPage />} /> */}
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/courses/:slug" element={<CourseDetailPage />} />
             </Routes>

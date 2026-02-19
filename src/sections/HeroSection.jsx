@@ -326,6 +326,7 @@ export default function HeroSection() {
                                 boxShadow: "0 20px 56px rgba(0,0,0,0.13)",
                                 background: "#c8e6d8",
                                 position: "relative",
+                                
                             }}>
                                 <SlideshowImage />
                             </div>
