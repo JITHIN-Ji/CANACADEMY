@@ -358,19 +358,28 @@ export default function ContactPage() {
                         </p>
 
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '16px' }}>
-                            <a href="#" className="social-btn social-btn-instagram">
-                                <span className="social-dot" style={{ background: '#ec4899' }}></span>
-                                Instagram
-                            </a>
-                            <a href="#" className="social-btn social-btn-facebook">
-                                <span className="social-dot" style={{ background: '#2563eb' }}></span>
-                                Facebook
-                            </a>
-                            <a href="#" className="social-btn social-btn-youtube">
-                                <span className="social-dot" style={{ background: '#ef4444' }}></span>
-                                YouTube
-                            </a>
-                        </div>
+    
+                        <a 
+                            href="https://www.instagram.com/canacademy_/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="social-btn social-btn-instagram"
+                        >
+                            <span className="social-dot" style={{ background: '#ec4899' }}></span>
+                            Instagram
+                        </a>
+
+                        <a 
+                            href="https://www.facebook.com/share/1BXfAhQr4v/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="social-btn social-btn-facebook"
+                        >
+                            <span className="social-dot" style={{ background: '#2563eb' }}></span>
+                            Facebook
+                        </a>
+
+                    </div>
                     </div>
                 </section>
 

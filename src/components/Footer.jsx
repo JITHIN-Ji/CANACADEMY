@@ -18,15 +18,23 @@ export default function Footer() {
                         </p>
                         {/* Social Media Links */}
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition">
-                                <FacebookIcon className="text-white" size={20} />
-                            </a>
-                            <a href="#" className="w-10 h-10 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center transition">
-                                <InstagramIcon className="text-white" size={20} />
-                            </a>
-                            <a href="#" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition">
-                                <YoutubeIcon className="text-white" size={20} />
-                            </a>
+                        <a 
+                            href="https://www.facebook.com/share/1BXfAhQr4v/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition"
+                        >
+                            <FacebookIcon className="text-white" size={20} />
+                        </a>
+
+                        <a 
+                            href="https://www.instagram.com/canacademy_/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center transition"
+                        >
+                            <InstagramIcon className="text-white" size={20} />
+                        </a>
                         </div>
                     </div>
 
@@ -91,7 +99,7 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="pt-8 text-center">
                     <p className="text-gray-600">
-                        Copyright © 2024 <span className="font-semibold text-gray-900">CAN Academy</span>. All Rights Reserved.
+                        Copyright © 2026 <span className="font-semibold text-gray-900">CAN Academy</span>. All Rights Reserved.
                     </p>
                 </div>
             </div>
