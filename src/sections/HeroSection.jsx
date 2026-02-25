@@ -66,16 +66,16 @@ function CyclingExam() {
             setTimeout(() => {
                 setIndex(prev => (prev + 1) % examLabels.length);
                 setAnimating(false);
-            }, 400);
-        }, 2200);
+            }, 600);
+        }, 4000);
         return () => clearInterval(interval);
     }, []);
 
     return (
         <span className="cycling-exam-wrap" style={{
             display: "inline-block",
-            width: "clamp(110px, 12vw, 180px)",
-            textAlign: "center",
+            width: "auto",
+            textAlign: "left",
             verticalAlign: "bottom",
             overflow: "visible",
         }}>
@@ -219,7 +219,7 @@ export default function HeroSection() {
                     }
                     .hero-section-imgs .wave1, .hero-section-imgs .wave2 { display: none; }
                     .cycling-exam-inner { font-size: 38px !important; }
-                    .cycling-exam-wrap  { width: 96px !important; }
+                    .cycling-exam-wrap  { width: auto !important; }
                     .exam-line { justify-content: center !important; }
                 }
             `}</style>
@@ -293,7 +293,6 @@ export default function HeroSection() {
                                 Enroll Now
                             </button>
 
-                            {/* TOP RESULTS BUTTON — replaces Watch Demo */}
                             <button onClick={() => navigate('/top-results')} className="btn-results" style={{
                                 display: "flex", alignItems: "center", gap: "9px",
                                 background: "rgba(255,255,255,0.75)", backdropFilter: "blur(10px)",
@@ -303,7 +302,6 @@ export default function HeroSection() {
                                 cursor: "pointer",
                                 fontFamily: "'DM Sans', sans-serif",
                             }}>
-                                {/* Trophy icon */}
                                 <span style={{
                                     width: '20px', height: '20px', display: 'inline-flex',
                                     alignItems: 'center', justifyContent: 'center', flexShrink: 0
