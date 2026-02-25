@@ -54,6 +54,53 @@ function SlideshowImage() {
     );
 }
 
+const examLabels = ["PSC", "KTET", "SSC"];
+
+function CyclingExam() {
+    const [index, setIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setAnimating(true);
+            setTimeout(() => {
+                setIndex(prev => (prev + 1) % examLabels.length);
+                setAnimating(false);
+            }, 400);
+        }, 2200);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <span className="cycling-exam-wrap" style={{
+            display: "inline-block",
+            width: "clamp(110px, 12vw, 180px)",
+            textAlign: "center",
+            verticalAlign: "bottom",
+            overflow: "visible",
+        }}>
+            <span
+                className="cycling-exam-inner"
+                style={{
+                    display: "inline-block",
+                    background: "linear-gradient(90deg, #1d4ed8, #13b456)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    fontWeight: 800,
+                    fontSize: "clamp(42px, 5vw, 68px)",
+                    opacity: animating ? 0 : 1,
+                    transform: animating ? "translateY(-14px)" : "translateY(0)",
+                    transition: "opacity 0.35s ease, transform 0.35s ease",
+                    whiteSpace: "nowrap",
+                }}
+            >
+                {examLabels[index]}
+            </span>
+        </span>
+    );
+}
+
 export default function HeroSection() {
     const navigate = useNavigate();
     return (
@@ -62,7 +109,7 @@ export default function HeroSection() {
             style={{
                 background: "#e8efec",
                 minHeight: "92vh",
-                paddingTop: "150px",          /* ← increased to push content below navbar */
+                paddingTop: "150px",
                 fontFamily: "'DM Sans', sans-serif",
                 position: "relative",
                 overflow: "hidden",
@@ -108,10 +155,10 @@ export default function HeroSection() {
                     transform: translateY(-2px);
                     box-shadow: 0 14px 36px rgba(22,140,96,0.45) !important;
                 }
-                .btn-outline {
+                .btn-results {
                     transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
                 }
-                .btn-outline:hover {
+                .btn-results:hover {
                     background: rgba(255,255,255,1) !important;
                     border-color: #1a9c6e !important;
                     transform: translateY(-2px);
@@ -145,9 +192,8 @@ export default function HeroSection() {
                     font-family: 'DM Sans', sans-serif;
                 }
 
-                /* ── MOBILE — completely unchanged ── */
                 @media (max-width: 768px) {
-                    .hero-section-outer { padding-top: 160px !important; }
+                    .hero-section-outer { padding-top: 140px !important; }
                     .hero-section-mobile { padding: 0 20px 48px !important; max-width: 100% !important; }
                     .hero-section-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
                     .hero-section-left { text-align: center; }
@@ -172,57 +218,55 @@ export default function HeroSection() {
                         margin-top: 24px !important;
                     }
                     .hero-section-imgs .wave1, .hero-section-imgs .wave2 { display: none; }
+                    .cycling-exam-inner { font-size: 38px !important; }
+                    .cycling-exam-wrap  { width: 96px !important; }
+                    .exam-line { justify-content: center !important; }
                 }
             `}</style>
 
-            {/* maxWidth + margin:auto keeps content centered & constrained on wide monitors */}
             <div
                 className="hero-section hero-section-mobile"
                 style={{
                     width: "100%",
-                    maxWidth: "1280px",       /* ← constrain desktop width */
-                    margin: "0 auto",          /* ← center on wide screens  */
-                    padding: "0 60px 48px",    /* ← slightly tighter than original 72px */
+                    maxWidth: "1280px",
+                    margin: "0 auto",
+                    padding: "0 60px 48px",
                     boxSizing: "border-box",
                 }}
             >
                 <div className="hero-section-grid" style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
-                    gap: "40px",               /* ← reduced from 56px */
+                    gap: "40px",
                     alignItems: "center",
                 }}>
 
-                    {/* ──────────── LEFT ──────────── */}
+                    {/* LEFT */}
                     <div className="hero-section-left" style={{ order: 1 }}>
                         <div className="hero-tag">Kerala's Most Trusted PSC Institute</div>
 
                         <h1
                             className="h-title"
                             style={{
-                                fontSize: "clamp(36px, 3.8vw, 58px)", /* ← scaled down from clamp(44px,4.8vw,72px) */
+                                fontSize: "clamp(36px, 3.8vw, 58px)",
                                 fontWeight: 700,
-                                lineHeight: 1.1,
+                                lineHeight: 1.15,
                                 color: "#0c1c17",
                                 margin: "0 0 22px",
                                 letterSpacing: "-0.02em",
                             }}
                         >
                             Achieve Excellence
-                            <span
-                                style={{
-                                    display: "block",
-                                    marginTop: "4px",
-                                    background: "linear-gradient(90deg, #1d4ed8, #13b456)",
-                                    WebkitBackgroundClip: "text",
-                                    WebkitTextFillColor: "transparent",
-                                    backgroundClip: "text",
-                                    fontWeight: 700,
-                                }}
-                            >
-                                in PSC, KTET & SSC
+                            <span className="exam-line" style={{
+                                display: "flex",
+                                alignItems: "baseline",
+                                marginTop: "4px",
+                                gap: "0px",
+                            }}>
+                                <span style={{ color: "#0c1c17", fontWeight: 700, marginRight: "10px" }}>in</span>
+                                <CyclingExam />
+                                <span style={{ color: "#0c1c17", fontWeight: 700, marginLeft: "10px" }}>Exams.</span>
                             </span>
-                            <span style={{ display: "block" }}>Exams.</span>
                         </h1>
 
                         <p className="h-desc" style={{
@@ -249,7 +293,8 @@ export default function HeroSection() {
                                 Enroll Now
                             </button>
 
-                            <button onClick={() => navigate('/contact')} className="btn-outline" style={{
+                            {/* TOP RESULTS BUTTON — replaces Watch Demo */}
+                            <button onClick={() => navigate('/top-results')} className="btn-results" style={{
                                 display: "flex", alignItems: "center", gap: "9px",
                                 background: "rgba(255,255,255,0.75)", backdropFilter: "blur(10px)",
                                 border: "1.5px solid #b8d4cc",
@@ -258,20 +303,20 @@ export default function HeroSection() {
                                 cursor: "pointer",
                                 fontFamily: "'DM Sans', sans-serif",
                             }}>
+                                {/* Trophy icon */}
                                 <span style={{
-                                    width: '20px', height: '20px', borderRadius: '50%',
-                                    border: '2px solid #1a9c6e', display: 'inline-flex',
+                                    width: '20px', height: '20px', display: 'inline-flex',
                                     alignItems: 'center', justifyContent: 'center', flexShrink: 0
                                 }}>
-                                    <span style={{
-                                        width: 0, height: 0,
-                                        borderTop: '4px solid transparent',
-                                        borderBottom: '4px solid transparent',
-                                        borderLeft: '7px solid #1a9c6e',
-                                        marginLeft: '2px'
-                                    }}></span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a9c6e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
+                                        <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/>
+                                        <path d="M12 17v4"/>
+                                        <path d="M8 21h8"/>
+                                        <path d="M6 5h12v6a6 6 0 0 1-12 0V5z"/>
+                                    </svg>
                                 </span>
-                                Watch Demo
+                                Top Results
                             </button>
                         </div>
 
@@ -293,7 +338,7 @@ export default function HeroSection() {
                         </div>
                     </div>
 
-                    {/* ──────────── RIGHT (Images) ──────────── */}
+                    {/* RIGHT (Images) */}
                     <div className="h-imgs hero-section-imgs" style={{ position: "relative", order: 2 }}>
                         <div className="wave1" style={{
                             position: "absolute", top: "-40px", right: "0px",
@@ -308,12 +353,12 @@ export default function HeroSection() {
                         <div className="hero-section-imgs-grid" style={{
                             display: "grid",
                             gridTemplateColumns: "1fr 1fr",
-                            gap: "20px",           /* ← reduced from 40px */
+                            gap: "20px",
                             alignItems: "start",
                         }}>
                             <div className="img-card" style={{
                                 borderRadius: "22px", overflow: "hidden",
-                                height: "360px",       /* ← reduced from 440px */
+                                height: "360px",
                                 boxShadow: "0 20px 56px rgba(0,0,0,0.13)",
                                 background: "#c8e6d8",
                             }}>
@@ -326,8 +371,8 @@ export default function HeroSection() {
 
                             <div className="img-card" style={{
                                 borderRadius: "22px", overflow: "hidden",
-                                height: "360px",       /* ← reduced from 440px */
-                                marginTop: "40px",     /* ← reduced from 56px  */
+                                height: "360px",
+                                marginTop: "40px",
                                 boxShadow: "0 20px 56px rgba(0,0,0,0.13)",
                                 background: "#c8e6d8",
                                 position: "relative",

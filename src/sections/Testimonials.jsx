@@ -31,18 +31,32 @@ export default function Testimonials() {
                 </div>
             </div>
 
-            {/* Full-width image banner — 300px tall, edge to edge */}
-            <div style={{ width: "100%", height: "820px", overflow: "hidden" }}>
+            {/* Full-width image banner — responsive: hero2 desktop, hero3 mobile */}
+            <style>{`
+                .banner-desktop { display: block; }
+                .banner-mobile  { display: none;  }
+
+                @media (max-width: 768px) {
+                    .banner-desktop { display: none;  }
+                    .banner-mobile  { display: block; }
+                }
+            `}</style>
+
+            {/* Desktop banner */}
+            <div className="banner-desktop" style={{ width: "100%", height: "820px", overflow: "hidden" }}>
                 <img
                     src="/assets/hero2.png"
                     alt="CAN Academy Banner"
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        display: "block",
-                    }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+            </div>
+
+            {/* Mobile banner */}
+            <div className="banner-mobile" style={{ width: "100%", overflow: "hidden" }}>
+                <img
+                    src="/assets/hero3.png"
+                    alt="CAN Academy Banner"
+                    style={{ width: "100%", height: "auto", display: "block" }}
                 />
             </div>
         </>

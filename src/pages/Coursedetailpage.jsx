@@ -337,7 +337,7 @@ export default function CourseDetailPage() {
                                 onMouseOver={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.20)'; }}
                                 onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.15)'; }}
                             >
-                                Book Free Demo
+                                Contact Us
                             </button>
                             <button
                                 onClick={() => navigate('/contact')}

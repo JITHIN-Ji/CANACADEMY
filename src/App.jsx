@@ -8,6 +8,7 @@ import Courses from "./pages/courses";
 import Contact from "./pages/contact";
 import CourseDetailPage from "./pages/Coursedetailpage";
 // import TutorsPage from "./pages/tutors";
+import TopResultsPage from "./pages/topresult.JSX";
 
 export default function App() {
     const location = useLocation();
@@ -27,6 +28,7 @@ export default function App() {
                 {/* <Route path="/tutors" element={<TutorsPage />} /> */}
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/courses/:slug" element={<CourseDetailPage />} />
+                <Route path="/top-results" element={<TopResultsPage />} />
             </Routes>
             <Footer />
         </>
