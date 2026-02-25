@@ -8,7 +8,7 @@ import Courses from "./pages/courses";
 import Contact from "./pages/contact";
 import CourseDetailPage from "./pages/Coursedetailpage";
 // import TutorsPage from "./pages/tutors";
-import TopResultsPage from "./pages/topresult.JSX";
+import TopResultsPage from "./pages/topresult.jsx";
 
 export default function App() {
     const location = useLocation();
