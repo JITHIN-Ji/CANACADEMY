@@ -2,19 +2,36 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const topResults = [
-    { id: 1,  photo: "/assets/results/result1.jpg"  },
-    { id: 2,  photo: "/assets/results/result2.jpg"  },
-    { id: 3,  photo: "/assets/results/result3.jpg"  },
-    { id: 4,  photo: "/assets/results/result4.jpg"  },
-    { id: 5,  photo: "/assets/results/result5.jpg"  },
-    { id: 6,  photo: "/assets/results/result6.jpg"  },
-    { id: 7,  photo: "/assets/results/result7.jpg"  },
-    { id: 8,  photo: "/assets/results/result8.jpg"  },
-    { id: 9,  photo: "/assets/results/result9.jpg"  },
-    { id: 10, photo: "/assets/results/result10.jpg" },
-    { id: 11, photo: "/assets/results/result11.jpg" },
-    { id: 12, photo: "/assets/results/result12.jpg" },
+    { id: 1,  photo: "/assets/results/result1.jpeg"  },
+    { id: 2,  photo: "/assets/results/result2.jpeg"  },
+    { id: 3,  photo: "/assets/results/result3.jpeg"  },
+    { id: 4,  photo: "/assets/results/result4.jpeg"  },
+    { id: 5,  photo: "/assets/results/result5.jpeg"  },
+    { id: 6,  photo: "/assets/results/result6.jpeg"  },
+    { id: 7,  photo: "/assets/results/result7.jpeg"  },
+    { id: 8,  photo: "/assets/results/result8.jpeg"  },
+    { id: 9,  photo: "/assets/results/result9.jpeg"  },
+    { id: 10, photo: "/assets/results/result10.jpeg" },
+    { id: 11, photo: "/assets/results/result11.jpeg" },
+    { id: 12, photo: "/assets/results/result12.jpeg" },
+    { id: 13, photo: "/assets/results/result13.jpeg" },
+    { id: 14, photo: "/assets/results/result14.jpeg" },
+    { id: 15, photo: "/assets/results/result15.jpeg" },
+    { id: 16, photo: "/assets/results/result16.jpeg" },
+    { id: 17, photo: "/assets/results/result17.jpeg" },
+    { id: 18, photo: "/assets/results/result18.jpeg" },
+    { id: 19, photo: "/assets/results/result19.jpeg" },
+    { id: 20, photo: "/assets/results/result20.jpeg" },
+    { id: 21, photo: "/assets/results/result21.jpeg" },
+    { id: 22, photo: "/assets/results/result22.jpeg" },
+    { id: 23, photo: "/assets/results/result23.jpeg" },
+    { id: 24, photo: "/assets/results/result24.jpeg" },
+    { id: 25, photo: "/assets/results/result25.jpeg" },
+    { id: 26, photo: "/assets/results/result26.jpeg" },
 ];
+
+// Deterministic tilt angles per card (no randomness on re-render)
+const tilts = [-3.2, 2.1, -1.5, 3.8, -2.7, 1.3, -3.5, 2.6, -1.2, 3.1, -2.4, 1.8];
 
 function useReveal() {
     const ref = useRef(null);
@@ -22,7 +39,7 @@ function useReveal() {
     useEffect(() => {
         const obs = new IntersectionObserver(
             ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(e.target); } },
-            { threshold: 0.08 }
+            { threshold: 0.06 }
         );
         if (ref.current) obs.observe(ref.current);
         return () => obs.disconnect();
@@ -30,30 +47,61 @@ function useReveal() {
     return [ref, visible];
 }
 
-function PhotoTile({ photo, index, height }) {
+function PolaroidTile({ photo, index }) {
     const [ref, visible] = useReveal();
+    const [hovered, setHovered] = useState(false);
+    const tilt = tilts[index % tilts.length];
+    const hoverTilt = tilt * 0.3;
+
     return (
         <div
             ref={ref}
-            className="photo-tile"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
             style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? "scale(1) translateY(0)" : "scale(0.96) translateY(24px)",
-                transition: `opacity 0.65s ease ${index * 0.07}s, transform 0.65s ease ${index * 0.07}s`,
-                borderRadius: "18px",
-                overflow: "hidden",
-                height,
-                background: "#c8e6d8",
+                transform: visible
+                    ? `rotate(${hovered ? hoverTilt : tilt}deg) translateY(${hovered ? "-10px" : "0"})`
+                    : `rotate(${tilt}deg) translateY(40px) scale(0.94)`,
+                transition: `opacity 0.7s ease ${index * 0.06}s, transform ${hovered ? "0.25s" : "0.7s"} cubic-bezier(.22,.68,0,1.15) ${hovered ? "0s" : `${index * 0.06}s`}`,
+                // Polaroid frame
+                background: "#fff",
+                padding: "10px 10px 36px 10px",
+                boxShadow: hovered
+                    ? "0 24px 48px rgba(0,0,0,0.22), 0 6px 16px rgba(0,0,0,0.12)"
+                    : "0 8px 24px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
+                borderRadius: "3px",
+                cursor: "default",
+                willChange: "transform",
+                // subtle tape look on top
+                position: "relative",
             }}
         >
+            {/* Tape strip decoration */}
+            <div style={{
+                position: "absolute",
+                top: "-12px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "48px",
+                height: "22px",
+                background: "rgba(255,230,100,0.55)",
+                borderRadius: "2px",
+                zIndex: 2,
+                backdropFilter: "blur(1px)",
+            }} />
+
             <img
                 src={photo}
                 alt=""
                 style={{
-                    width: "100%", height: "100%",
-                    objectFit: "cover", objectPosition: "top center",
+                    width: "100%",
+                    height: "auto",
                     display: "block",
-                    transition: "transform 0.6s cubic-bezier(.22,.68,0,1.15)",
+                    borderRadius: "1px",
+                    // Slight warm/vintage filter
+                    filter: hovered ? "sepia(0.05) brightness(1.03)" : "sepia(0.12) brightness(0.97)",
+                    transition: "filter 0.3s ease",
                 }}
             />
         </div>
@@ -69,26 +117,14 @@ export default function TopResultsPage() {
         return () => clearTimeout(t);
     }, []);
 
-    // Split into 3 columns for desktop masonry
     const col1 = topResults.filter((_, i) => i % 3 === 0);
     const col2 = topResults.filter((_, i) => i % 3 === 1);
     const col3 = topResults.filter((_, i) => i % 3 === 2);
 
-    const h1 = ["380px", "280px", "340px", "300px"];
-    const h2 = ["300px", "360px", "260px", "340px"];
-    const h3 = ["320px", "300px", "380px", "260px"];
-
-    // Mobile heights (shorter for 2-col)
-    const hm = ["240px", "200px", "220px", "200px", "240px", "210px",
-                 "220px", "240px", "200px", "220px", "240px", "200px"];
-
     return (
-        <div style={{ background: "#fff", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ background: "#f5f0e8", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700;800&display=swap');
-
-                .photo-tile { cursor: default; }
-                .photo-tile:hover img { transform: scale(1.05); }
 
                 .tr-hero-slide {
                     opacity: 0; transform: translateY(32px);
@@ -96,9 +132,7 @@ export default function TopResultsPage() {
                 }
                 .tr-hero-slide.vis { opacity: 1; transform: translateY(0); }
 
-                /* Desktop masonry — visible by default */
                 .masonry-desktop { display: grid; }
-                /* Mobile single-col — hidden by default */
                 .mobile-grid { display: none; }
 
                 @media (max-width: 768px) {
@@ -109,7 +143,7 @@ export default function TopResultsPage() {
 
             {/* Hero */}
             <section style={{
-                background: "#e8efec",
+                background: "linear-gradient(160deg, #e8efec 0%, #f5f0e8 100%)",
                 paddingTop: "140px", paddingBottom: "64px",
                 paddingLeft: "24px", paddingRight: "24px",
                 textAlign: "center",
@@ -154,39 +188,41 @@ export default function TopResultsPage() {
                 </div>
             </section>
 
-            {/* ── DESKTOP: 3-col masonry ── */}
-            <section style={{ padding: "64px 32px 80px", background: "#fff" }}>
+            {/* Gallery */}
+            <section style={{ padding: "80px 40px 100px", background: "#f5f0e8" }}>
                 <div style={{ maxWidth: "1240px", margin: "0 auto" }}>
 
-                    {/* Desktop masonry */}
+                    {/* Desktop 3-col masonry */}
                     <div
                         className="masonry-desktop"
-                        style={{ gridTemplateColumns: "1fr 1fr 1fr", gap: "18px", alignItems: "start" }}
+                        style={{ gridTemplateColumns: "1fr 1fr 1fr", gap: "40px", alignItems: "start" }}
                     >
-                        <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
                             {col1.map((item, i) => (
-                                <PhotoTile key={item.id} photo={item.photo} index={i * 3} height={h1[i % h1.length]} />
+                                <PolaroidTile key={item.id} photo={item.photo} index={i * 3} />
                             ))}
                         </div>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "18px", marginTop: "52px" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "48px", marginTop: "64px" }}>
                             {col2.map((item, i) => (
-                                <PhotoTile key={item.id} photo={item.photo} index={i * 3 + 1} height={h2[i % h2.length]} />
+                                <PolaroidTile key={item.id} photo={item.photo} index={i * 3 + 1} />
                             ))}
                         </div>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "18px", marginTop: "26px" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "48px", marginTop: "32px" }}>
                             {col3.map((item, i) => (
-                                <PhotoTile key={item.id} photo={item.photo} index={i * 3 + 2} height={h3[i % h3.length]} />
+                                <PolaroidTile key={item.id} photo={item.photo} index={i * 3 + 2} />
                             ))}
                         </div>
                     </div>
 
-                    {/* Mobile single column — all 12 images one by one */}
+                    {/* Mobile single column */}
                     <div
                         className="mobile-grid"
-                        style={{ flexDirection: "column", gap: "14px" }}
+                        style={{ flexDirection: "column", gap: "40px", alignItems: "center" }}
                     >
                         {topResults.map((item, i) => (
-                            <PhotoTile key={item.id} photo={item.photo} index={i} height="280px" />
+                            <div key={item.id} style={{ width: "85%", maxWidth: "340px" }}>
+                                <PolaroidTile photo={item.photo} index={i} />
+                            </div>
                         ))}
                     </div>
 

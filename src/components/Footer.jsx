@@ -88,7 +88,7 @@ export default function Footer() {
                                 <ClockIcon className="text-green-600 flex-shrink-0 mt-1" size={20} />
                                 <div>
                                     <p className="font-semibold text-gray-900">Working Hours</p>
-                                    <p className="text-sm">10:00 AM - 4:30 PM</p>
+                                    <p className="text-sm">10:00 AM - 3:30 PM</p>
                                     <p className="text-sm">Open on Sundays</p>
                                 </div>
                             </div>

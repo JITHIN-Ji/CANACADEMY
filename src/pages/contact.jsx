@@ -58,7 +58,7 @@ export default function ContactPage() {
         },
         {
             label: 'Hours',
-            value: 'Mon – Sat  ·  10 AM – 4:30 PM',
+            value: 'Mon – Sat  ·  10 AM – 3:30 PM',
             sub: 'Sunday open for classes',
             accent: '#059669',
             accentBg: 'rgba(5,150,105,0.09)',

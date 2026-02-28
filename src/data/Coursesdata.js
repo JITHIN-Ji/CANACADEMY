@@ -124,23 +124,23 @@ export const coursesData = [
             "Study materials",
             "Online support"
         ]
-    },
-    {
-        id: 8,
-        slug: "psc-notifications",
-        name: "PSC Notification Updates",
-        category: "Service",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
-        description: "Stay updated with latest PSC notifications and exam dates",
-        levels: ["All Students"],
-        duration: "Continuous",
-        schedule: "Regular Updates",
-        features: [
-            "Exam notifications",
-            "Application deadlines",
-            "Result updates",
-            "Syllabus changes",
-            "Important announcements"
-        ]
     }
+    // {
+    //     id: 8,
+    //     slug: "psc-notifications",
+    //     name: "PSC Notification Updates",
+    //     category: "Service",
+    //     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
+    //     description: "Stay updated with latest PSC notifications and exam dates",
+    //     levels: ["All Students"],
+    //     duration: "Continuous",
+    //     schedule: "Regular Updates",
+    //     features: [
+    //         "Exam notifications",
+    //         "Application deadlines",
+    //         "Result updates",
+    //         "Syllabus changes",
+    //         "Important announcements"
+    //     ]
+    // }
 ];

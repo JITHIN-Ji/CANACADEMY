@@ -8,11 +8,9 @@ const cards = [
         image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
         accent: "#3b82f6",
         items: [
-            "General PSC (10th, +2, Degree Level)",
-            "LPSA & UPSA",
-            "Kerala Police",
-            "ICDS",
-            "PSC Sunday Batch",
+            "General PSC (7th, 10th, +2, Degree)",
+            "Regular Classes – 10am - 3:30pm",
+            "Working Hours: 7 Days A Week",
         ],
         extra: null,
     },
@@ -21,11 +19,11 @@ const cards = [
         image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
         accent: "#10b981",
         items: [
-            "Category 1 & 2",
-            "Duration: Until Exam (50+ classes)",
-            "Regular Classes: 10:30 AM – 4:00 PM",
+            "Category – I, II, III, IV",
+            "Regular Classes – 10:30am - 3:30pm",
+            // "Model Exam: Topic Exam and ...",
         ],
-        extra: "Comprehensive study materials included",
+        extra: null,
     },
     {
         title: "SSC Coaching",
@@ -253,8 +251,10 @@ export default function FeaturesSection() {
                     {cards.map((card, i) => (
                         <div
                             key={i}
-                            ref={(el) => (cardRefs.current[i] = el)}
+                            ref={el => cardRefs.current[i] = el}
                             className="cover-card card-animate"
+                            onClick={() => navigate('/courses')}
+                            style={{ cursor: 'pointer' }}
                         >
                             {/* Background Image */}
                             <img
