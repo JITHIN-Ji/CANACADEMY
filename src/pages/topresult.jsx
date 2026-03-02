@@ -18,16 +18,14 @@ const topResults = [
     { id: 14, photo: "/assets/results/result14.jpeg" },
     { id: 15, photo: "/assets/results/result15.jpeg" },
     { id: 16, photo: "/assets/results/result16.jpeg" },
-    { id: 17, photo: "/assets/results/result17.jpeg" },
-    { id: 18, photo: "/assets/results/result18.jpeg" },
+    
     { id: 19, photo: "/assets/results/result19.jpeg" },
-    { id: 20, photo: "/assets/results/result20.jpeg" },
-    { id: 21, photo: "/assets/results/result21.jpeg" },
+  
     { id: 22, photo: "/assets/results/result22.jpeg" },
     { id: 23, photo: "/assets/results/result23.jpeg" },
     { id: 24, photo: "/assets/results/result24.jpeg" },
     { id: 25, photo: "/assets/results/result25.jpeg" },
-    { id: 26, photo: "/assets/results/result26.jpeg" },
+    
 ];
 
 // Deterministic tilt angles per card (no randomness on re-render)
